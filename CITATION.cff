@@ -1,0 +1,57 @@
+cff-version: 1.2.0
+message: "If you use this software or data, please cite it as below."
+title: "TPMS lattice ML: data and code for machine-learning-enabled structure-property mapping of TPMS lattice structures"
+type: software
+version: "1.0.0"
+license: MIT
+repository-code: "https://github.com/aliakbermollick/tpms-lattice-ml"
+url: "https://aliakbermollick.github.io/tpms-lattice-ml/docs/"
+abstract: >-
+  Finite-element dataset of 270 triply periodic minimal surface (TPMS) lattices (five families), machine-learning
+  surrogate models (Young's modulus and specific stiffness), inverse design, SHAP analysis, Bayesian optimization
+  scripts, and a browser calculator.
+keywords:
+  - TPMS lattice
+  - machine learning
+  - inverse design
+  - SHAP
+  - Bayesian optimization
+  - additive manufacturing
+authors:
+  - family-names: Mollick
+    given-names: Ali Akber
+    email: aamollick@miners.utep.edu
+    affiliation: "Department of Aerospace and Mechanical Engineering, The University of Texas at El Paso"
+  - family-names: Zaman
+    given-names: Saqlain
+    affiliation: "Department of Aerospace and Mechanical Engineering, The University of Texas at El Paso"
+  - family-names: Mahmud
+    given-names: Md Shahjahan
+    affiliation: "Department of Aerospace and Mechanical Engineering, The University of Texas at El Paso"
+  - family-names: Mesbah
+    given-names: Maisha
+    affiliation: "Department of Aerospace and Mechanical Engineering, The University of Texas at El Paso"
+  - family-names: Lhaden
+    given-names: Tenzin
+    affiliation: "Department of Aerospace and Mechanical Engineering, The University of Texas at El Paso"
+  - family-names: Arroyo
+    given-names: Sabina
+    affiliation: "Department of Aerospace and Mechanical Engineering, The University of Texas at El Paso"
+  - family-names: Rahman
+    given-names: Asif
+    affiliation: "Department of Computer Science, The University of Texas at El Paso"
+  - family-names: Moriel
+    given-names: Cesar
+    affiliation: "Department of Aerospace and Mechanical Engineering, The University of Texas at El Paso"
+  - family-names: Kiekintveld
+    given-names: Christopher
+    affiliation: "Department of Computer Science, The University of Texas at El Paso"
+  - family-names: Hasanyan
+    given-names: Armanj D.
+    affiliation: "Department of Aerospace and Mechanical Engineering, The University of Texas at El Paso"
+  - family-names: Tseng
+    given-names: Tzu-Liang
+    affiliation: "Department of Industrial, Manufacturing and Systems Engineering, The University of Texas at El Paso"
+  - family-names: Lin
+    given-names: Yirong
+    affiliation: "Department of Aerospace and Mechanical Engineering, The University of Texas at El Paso"

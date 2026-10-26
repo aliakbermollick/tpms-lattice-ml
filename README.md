@@ -52,3 +52,12 @@ BO used scikit-optimize 0.10.2. Pickled models are not stored in this repo (abou
 ## Data availability
 FE inputs and outputs: `data/`. Experimental data (compression tests, dimensions, FTIR) are available from the
 corresponding author on request.
+
+## License
+The code is released under the MIT License (see `LICENSE`). A separate license for the dataset in `data/` is to be
+confirmed; until then please contact the corresponding author before redistributing the data.
+
+## Citation
+If you use this repository, please cite it using `CITATION.cff` (GitHub's "Cite this repository" button) and the
+accompanying paper once it is published. A Zenodo archive with a DOI is planned; the DOI will be added here after
+the first release.

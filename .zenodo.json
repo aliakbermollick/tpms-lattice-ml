@@ -1,0 +1,23 @@
+{
+  "title": "TPMS lattice ML: data and code for machine-learning-enabled structure-property mapping of TPMS lattice structures",
+  "upload_type": "software",
+  "description": "Finite-element dataset of 270 triply periodic minimal surface (TPMS) lattices (Diamond, Gyroid, Lidinoid, Schwarz, SplitP), machine-learning surrogate models for Young's modulus and specific stiffness, inverse design, SHAP analysis, Bayesian optimization scripts, and a browser calculator.",
+  "creators": [
+    {"name": "Mollick, Ali Akber", "affiliation": "The University of Texas at El Paso"},
+    {"name": "Zaman, Saqlain", "affiliation": "The University of Texas at El Paso"},
+    {"name": "Mahmud, Md Shahjahan", "affiliation": "The University of Texas at El Paso"},
+    {"name": "Mesbah, Maisha", "affiliation": "The University of Texas at El Paso"},
+    {"name": "Lhaden, Tenzin", "affiliation": "The University of Texas at El Paso"},
+    {"name": "Arroyo, Sabina", "affiliation": "The University of Texas at El Paso"},
+    {"name": "Rahman, Asif", "affiliation": "The University of Texas at El Paso"},
+    {"name": "Moriel, Cesar", "affiliation": "The University of Texas at El Paso"},
+    {"name": "Kiekintveld, Christopher", "affiliation": "The University of Texas at El Paso"},
+    {"name": "Hasanyan, Armanj D.", "affiliation": "The University of Texas at El Paso"},
+    {"name": "Tseng, Tzu-Liang", "affiliation": "The University of Texas at El Paso"},
+    {"name": "Lin, Yirong", "affiliation": "The University of Texas at El Paso"}
+  ],
+  "keywords": ["TPMS lattice", "machine learning", "inverse design", "SHAP", "Bayesian optimization", "additive manufacturing"],
+  "license": "MIT",
+  "access_right": "open",
+  "grants": [{"id": "10.13039/100000001::1827745"}]
+}
