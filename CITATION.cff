@@ -4,6 +4,7 @@ title: "TPMS lattice ML: data and code for machine-learning-enabled structure-pr
 type: software
 version: "1.0.0"
 license: MIT
+doi: 10.5281/zenodo.23655240
 repository-code: "https://github.com/aliakbermollick/tpms-lattice-ml"
 url: "https://aliakbermollick.github.io/tpms-lattice-ml/docs/"
 abstract: >-

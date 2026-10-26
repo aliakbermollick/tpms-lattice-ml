@@ -58,5 +58,9 @@ The code and data in this repository are released under the MIT License (see `LI
 
 ## Citation
 If you use this repository, please cite it using `CITATION.cff` (GitHub's "Cite this repository" button) and the
-accompanying paper once it is published. A Zenodo archive with a DOI is planned; the DOI will be added here after
-the first release.
+accompanying paper once it is published.
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23655240.svg)](https://doi.org/10.5281/zenodo.23655240)
+
+The repository is archived on Zenodo. The DOI above always resolves to the latest version; release v1.0.0 has its own
+DOI, [10.5281/zenodo.23655241](https://doi.org/10.5281/zenodo.23655241).
