@@ -49,5 +49,6 @@ accompanying paper once it is published.
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23655240.svg)](https://doi.org/10.5281/zenodo.23655240)
 
-The repository is archived on Zenodo. The DOI above always resolves to the latest version; release v1.0.0 has its own
-DOI, [10.5281/zenodo.23655241](https://doi.org/10.5281/zenodo.23655241).
+The repository is archived on Zenodo. The DOI above always resolves to the latest version. Release v1.0.1 has its own
+DOI, [10.5281/zenodo.23655761](https://doi.org/10.5281/zenodo.23655761); v1.0.0 is
+[10.5281/zenodo.23655241](https://doi.org/10.5281/zenodo.23655241).
