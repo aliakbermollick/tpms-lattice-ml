@@ -41,7 +41,7 @@ warnings.filterwarnings("ignore")
 # ================================================================
 # 0) FORCE ARIAL + EDITABLE PDF/SVG TEXT
 # ================================================================
-arial_name = "DejaVu Sans"  # Arial not available on the cluster
+arial_name = "DejaVu Sans"  # Arial not installed
 
 plt.rcParams.update({
     "font.family": "sans-serif",

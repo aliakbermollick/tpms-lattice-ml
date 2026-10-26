@@ -1,4 +1,4 @@
-"""Compare a new BO run (Jakar) with a saved original run, campaign by campaign (matched by folder path)."""
+"""Compare a new BO run (re-run) with a saved original run, campaign by campaign (matched by folder path)."""
 import sys, glob, os, re
 import numpy as np, pandas as pd
 

@@ -11,7 +11,7 @@ mapping in TPMS lattice structures"* (Mollick et al.).
 | `03_ml_models/` | 2.5, 3.3, Table 3, Table S1 | 6 base models + Stacked Ensemble (training, and re-scoring of saved models) |
 | `04_prediction_inverse_design/` | 2.6–2.7, 3.4–3.5, Tables 4–7 | Out-of-sample prediction and inverse design |
 | `05_shap/` | 2.8, 3.6, Fig 4, S15–S17 | Family-wise KernelSHAP for SE and GPR |
-| `06_bayesian_optimization/` | 2.9, 3.7, Tables 8–9, S2–S5 | Bayesian optimization (50 seeds) and the Jakar HPC job |
+| `06_bayesian_optimization/` | 2.9, 3.7, Tables 8–9, S2–S5 | Bayesian optimization (50 seeds) and the script for the parallel run |
 | `docs/` | - | Browser calculator for Young's modulus (Stacked Ensemble), served by GitHub Pages |
 
 ## Online calculator
@@ -31,7 +31,7 @@ this repo (`docs/model/`); the other pickled models (about 50 MB) are not. Re-tr
 ## Verification summary (reproduction of the paper's numbers)
 - Sections 3.2 statistics, Spearman matrices, Table 3, Tables 4–5: reproduce exactly.
 - SHAP (both models): recomputed tables identical to the saved ones.
-- BO on Jakar (40 cores, 360 GB): GPR 11.7 min, SE 21.7 min, against 88.5 and 162.2 min on 5 workers.
+- BO re-run on one 40-core node (360 GB): GPR 11.7 min, SE 21.7 min, against 88.5 and 162.2 min on 5 workers.
   Per campaign, 579/600 (GPR) and 585/600 (SE) best values are identical to the original runs; the best
   over 50 seeds is identical (E 802.11 GPR / 795.86 SE; Especific 1.18927 GPR / 1.19086 SE).
   The remaining campaigns diverge late in the search, likely from library-version differences.
