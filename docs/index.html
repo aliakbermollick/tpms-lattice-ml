@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TPMS Young's modulus calculator</title>
+<style>
+  :root { --bg:#ffffff; --fg:#1b1f24; --muted:#5b6672; --card:#f5f7fa; --line:#d5dbe3; --accent:#1f6feb; --ok:#1a7f37; --warn:#9a6700; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0f1318; --fg:#e6ebf1; --muted:#9aa6b2; --card:#171d24; --line:#2b3440; --accent:#58a6ff; --ok:#3fb950; --warn:#d29922; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+  main { max-width: 680px; margin: 0 auto; padding: 24px 16px 48px; }
+  h1 { font-size: 1.5rem; margin: 0 0 4px; }
+  p.sub { margin: 0 0 20px; color: var(--muted); }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .grid .full { grid-column: 1 / -1; }
+  label { display:block; font-size: .9rem; color: var(--muted); margin-bottom: 4px; }
+  input, select { width: 100%; padding: 9px 10px; font: inherit; color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; }
+  input:focus, select:focus, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .row { display:flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+  button { font: inherit; padding: 9px 16px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); cursor: pointer; }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  button:disabled { opacity: .5; cursor: not-allowed; }
+  #result { margin-top: 16px; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); min-height: 3.2em; }
+  #result .value { font-size: 1.8rem; font-weight: 600; }
+  #status { margin: 0 0 14px; font-size: .92rem; color: var(--muted); }
+  .warn { color: var(--warn); font-size: .92rem; margin-top: 6px; }
+  .note { color: var(--muted); font-size: .88rem; margin-top: 22px; }
+  .note code { background: var(--card); padding: 1px 5px; border-radius: 4px; }
+  @media (max-width: 480px) { .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>TPMS Young's modulus calculator</h1>
+  <p class="sub">Predicts the effective Young's modulus of a TPMS lattice with the Stacked Ensemble surrogate model.</p>
+
+  <p id="status" role="status">Loading Python and the model (first load can take 20&ndash;40 seconds)&hellip;</p>
+
+  <form id="form" class="card" autocomplete="off">
+    <div class="grid">
+      <div class="full">
+        <label for="family">TPMS family</label>
+        <select id="family">
+          <option>Diamond</option>
+          <option>Gyroid</option>
+          <option>Lidinoid</option>
+          <option>Schwarz</option>
+          <option>SplitP</option>
+        </select>
+      </div>
+      <div><label for="ucx">Unit cell size UC<sub>x</sub> (mm)</label><input id="ucx" type="number" min="2" max="4" step="0.01" value="3.00" required></div>
+      <div><label for="ucy">Unit cell size UC<sub>y</sub> (mm)</label><input id="ucy" type="number" min="2" max="4" step="0.01" value="3.00" required></div>
+      <div><label for="ucz">Unit cell size UC<sub>z</sub> (mm)</label><input id="ucz" type="number" min="2" max="4" step="0.01" value="3.00" required></div>
+      <div><label for="t">Wall thickness t (mm)</label><input id="t" type="number" min="0.3" max="0.4" step="0.01" value="0.35" required></div>
+    </div>
+    <div class="row">
+      <button type="submit" id="go" class="primary" disabled>Predict Young's modulus</button>
+      <button type="button" id="example" disabled>Fill an example</button>
+    </div>
+    <div id="result" aria-live="polite"></div>
+  </form>
+
+  <p class="note">
+    The model was trained on finite-element results for 270 designs (five families, unit cell sizes 2&ndash;4&nbsp;mm,
+    wall thickness 0.30&ndash;0.40&nbsp;mm, solid modulus 1.5&nbsp;GPa, cylinder 12&nbsp;mm &times; 20&nbsp;mm). Predictions outside
+    these ranges are extrapolations and are not reliable. The result is the as-designed stiffness; printed parts can
+    differ because of fabrication effects. Everything runs in your browser, and no inputs are sent anywhere.
+    Code and data: <a href="https://github.com/aliakbermollick/tpms-lattice-ml">github.com/aliakbermollick/tpms-lattice-ml</a>.
+  </p>
+</main>
+
+<script src="https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js"></script>
+<script>
+const FAMILY_ORDER = ["Diamond", "Gyroid", "Split P", "Schwarz", "Lidinoid"]; // order used in training
+const MODEL_URL = "model/model_StackedEnsemble_Youngs_Modulus_MPa.pkl";
+const EXAMPLES = [
+  { family: "Lidinoid", ucx: 2.0, ucy: 2.1, ucz: 3.5, t: 0.4 },
+  { family: "Gyroid", ucx: 2.5, ucy: 3.2, ucz: 3.5, t: 0.3 },
+  { family: "Diamond", ucx: 2.1, ucy: 2.2, ucz: 3.3, t: 0.3 },
+  { family: "Schwarz", ucx: 2.2, ucy: 2.4, ucz: 2.6, t: 0.4 },
+  { family: "SplitP", ucx: 3.3, ucy: 3.4, ucz: 3.9, t: 0.3 },
+];
+const $ = (id) => document.getElementById(id);
+let pyodide = null, exampleIdx = 0;
+
+async function init() {
+  try {
+    pyodide = await loadPyodide();
+    $("status").textContent = "Loading scikit-learn…";
+    await pyodide.loadPackage(["numpy", "scipy", "scikit-learn", "joblib"]);
+    $("status").textContent = "Loading the model…";
+    const buf = await (await fetch(MODEL_URL)).arrayBuffer();
+    pyodide.FS.writeFile("/model.pkl", new Uint8Array(buf));
+    await pyodide.runPythonAsync(`
+import joblib, numpy as np
+_bundle = joblib.load("/model.pkl")
+_pipe = _bundle["pipeline"]
+# no threads in the browser: run every estimator sequentially
+_pipe.set_params(**{k: 1 for k in _pipe.get_params() if k.endswith("n_jobs")})
+_ORDER = ${JSON.stringify(FAMILY_ORDER)}
+def predict_E(family, t, ucx, ucy, ucz):
+    enc = [1.0 if f == family else 0.0 for f in _ORDER]
+    return float(_pipe.predict(np.array([enc + [t, ucx, ucy, ucz]]))[0])
+`);
+    $("status").textContent = "Ready.";
+    $("go").disabled = false; $("example").disabled = false;
+  } catch (e) {
+    $("status").textContent = "Could not load the model: " + e;
+  }
+}
+
+function pyFamily(name) { return name === "SplitP" ? "Split P" : name; }
+
+$("form").addEventListener("submit", async (ev) => {
+  ev.preventDefault();
+  if (!pyodide) return;
+  const v = { ucx: +$("ucx").value, ucy: +$("ucy").value, ucz: +$("ucz").value, t: +$("t").value };
+  const out = pyodide.globals.get("predict_E")(pyFamily($("family").value), v.t, v.ucx, v.ucy, v.ucz);
+  const outside = [v.ucx, v.ucy, v.ucz].some((x) => x < 2 || x > 4) || v.t < 0.3 || v.t > 0.4;
+  $("result").innerHTML =
+    `<div class="value">${out.toFixed(1)} MPa</div><div>Predicted Young's modulus (Stacked Ensemble)</div>` +
+    (outside ? `<div class="warn">Some inputs are outside the training range (UC 2&ndash;4 mm, t 0.30&ndash;0.40 mm). Treat this as an extrapolation.</div>` : "");
+});
+
+$("example").addEventListener("click", () => {
+  const e = EXAMPLES[exampleIdx++ % EXAMPLES.length];
+  $("family").value = e.family; $("ucx").value = e.ucx.toFixed(2); $("ucy").value = e.ucy.toFixed(2);
+  $("ucz").value = e.ucz.toFixed(2); $("t").value = e.t.toFixed(2);
+  $("form").requestSubmit();
+});
+
+init();
+</script>
+</body>
+</html>

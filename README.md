@@ -12,6 +12,13 @@ mapping in TPMS lattice structures"* (Mollick et al.).
 | `04_prediction_inverse_design/` | 2.6–2.7, 3.4–3.5, Tables 4–7 | Out-of-sample prediction and inverse design |
 | `05_shap/` | 2.8, 3.6, Fig 4, S15–S17 | Family-wise KernelSHAP for SE and GPR |
 | `06_bayesian_optimization/` | 2.9, 3.7, Tables 8–9, S2–S5 | Bayesian optimization (50 seeds) and the Jakar HPC job |
+| `docs/` | - | Browser calculator for Young's modulus (Stacked Ensemble), served by GitHub Pages |
+
+## Online calculator
+Enter the TPMS family, the unit cell sizes UCx, UCy, UCz (2–4 mm) and the wall thickness t (0.30–0.40 mm) to get the
+predicted Young's modulus. The model runs in your browser through Pyodide (Python in WebAssembly), so nothing is sent to
+a server. The first load downloads Python and scikit-learn and takes about 20–40 seconds.
+Live page: https://aliakbermollick.github.io/tpms-lattice-ml/
 
 Each folder has `reference_outputs/` or `reference_results/` with the numbers from the runs used in the paper.
 

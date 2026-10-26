@@ -3,3 +3,6 @@ __pycache__/
 .ipynb_checkpoints/
 # trained models are large; see README
 *.pkl
+
+# the calculator needs this one model file
+!docs/model/model_StackedEnsemble_Youngs_Modulus_MPa.pkl
