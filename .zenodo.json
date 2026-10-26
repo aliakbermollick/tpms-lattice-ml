@@ -3,7 +3,7 @@
   "upload_type": "software",
   "description": "Finite-element dataset of 270 triply periodic minimal surface (TPMS) lattices (Diamond, Gyroid, Lidinoid, Schwarz, SplitP), machine-learning surrogate models for Young's modulus and specific stiffness, inverse design, SHAP analysis, Bayesian optimization scripts, and a browser calculator.",
   "creators": [
-    {"name": "Mollick, Ali Akber", "affiliation": "The University of Texas at El Paso"},
+    {"name": "Mollick, Ali Akber", "affiliation": "The University of Texas at El Paso", "orcid": "0009-0009-4914-0753"},
     {"name": "Zaman, Saqlain", "affiliation": "The University of Texas at El Paso"},
     {"name": "Mahmud, Md Shahjahan", "affiliation": "The University of Texas at El Paso"},
     {"name": "Mesbah, Maisha", "affiliation": "The University of Texas at El Paso"},
