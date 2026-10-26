@@ -24,7 +24,8 @@ Each folder has `reference_outputs/` or `reference_results/` with the numbers fr
 
 ## Environment
 The saved models were pickled with **scikit-learn 1.6.1 / numpy 2.x** and load with scikit-learn 1.5.2–1.6.1 (not 1.9).
-BO used scikit-optimize 0.10.2. Pickled models are not stored in this repo (about 50 MB); re-train with
+BO used scikit-optimize 0.10.2. Only the Young's modulus Stacked Ensemble model used by the calculator is stored in
+this repo (`docs/model/`); the other pickled models (about 50 MB) are not. Re-train with
 `03_ml_models/train_models.py` or ask the corresponding author. Set `TPMS_MODEL_RUN` to the model folder.
 
 ## Verification summary (reproduction of the paper's numbers)
@@ -34,20 +35,6 @@ BO used scikit-optimize 0.10.2. Pickled models are not stored in this repo (abou
   Per campaign, 579/600 (GPR) and 585/600 (SE) best values are identical to the original runs; the best
   over 50 seeds is identical (E 802.11 GPR / 795.86 SE; Especific 1.18927 GPR / 1.19086 SE).
   The remaining campaigns diverge late in the search, likely from library-version differences.
-
-## Notes on the published tables
-- **Tables 6–7 (inverse design):** the search returns 30 finalists per model and family. One candidate per
-  family was selected from these for FE validation; it is not always the minimum-error finalist.
-- **Table 6, Gyroid:** the code gives 248.67 MPa (the paper lists 248.70).
-- **Table 8 / Sec. 3.7.1:** the SE global optimum for specific stiffness is 1.1909 (Table 9, `bo_best_summaries_jakar_SE.csv`);
-  the text lists 1.181.
-- **Fig 4 / Sec. 3.6:** UCz is the top driver of specific stiffness in Diamond, Gyroid, Lidinoid and SplitP; in Schwarz
-  UCy and UCx are larger.
-- **Sec. 3.2:** Spearman ρ between wall thickness and E is 0.33–0.53 (moderate).
-- **Table S1** does not list the GPR search (`alpha` ∈ {1e-6, 1e-5, 1e-4}, `n_restarts_optimizer` ∈ {0, 2, 5};
-  kernel = Constant × ARD-RBF + White). CV was 5-fold, stratified by family; the test set is 54 designs (20%).
-- **Figures S3/S4:** `01_statistical_analysis/statistical_analysis.py` regenerates equivalent figures; the original
-  figure script was not found.
 
 ## Data availability
 FE inputs and outputs: `data/`. Experimental data (compression tests, dimensions, FTIR) are available from the
