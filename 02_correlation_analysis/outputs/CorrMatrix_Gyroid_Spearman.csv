@@ -1,0 +1,7 @@
+,Thickness (t) (mm),UCx (mm),UCy (mm),UCz (mm),Young's Modulus (MPa),Specific Stiffness (MPa/(kg/m3))
+Thickness (t) (mm),1.0,0.0,0.0,0.0,0.36,0.12
+UCx (mm),0.0,1.0,0.0,0.0,-0.56,-0.44
+UCy (mm),0.0,0.0,1.0,0.0,-0.6,-0.48
+UCz (mm),0.0,0.0,0.0,1.0,0.38,0.72
+Young's Modulus (MPa),0.36,-0.56,-0.6,0.38,1.0,0.88
+Specific Stiffness (MPa/(kg/m3)),0.12,-0.44,-0.48,0.72,0.88,1.0

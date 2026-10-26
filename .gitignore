@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+# trained models are large; see README
+*.pkl
