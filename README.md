@@ -54,8 +54,7 @@ FE inputs and outputs: `data/`. Experimental data (compression tests, dimensions
 corresponding author on request.
 
 ## License
-The code is released under the MIT License (see `LICENSE`). A separate license for the dataset in `data/` is to be
-confirmed; until then please contact the corresponding author before redistributing the data.
+The code and data in this repository are released under the MIT License (see `LICENSE`).
 
 ## Citation
 If you use this repository, please cite it using `CITATION.cff` (GitHub's "Cite this repository" button) and the
