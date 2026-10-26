@@ -18,7 +18,7 @@ mapping in TPMS lattice structures"* (Mollick et al.).
 Enter the TPMS family, the unit cell sizes UCx, UCy, UCz (2–4 mm) and the wall thickness t (0.30–0.40 mm) to get the
 predicted Young's modulus. The model runs in your browser through Pyodide (Python in WebAssembly), so nothing is sent to
 a server. The first load downloads Python and scikit-learn and takes about 20–40 seconds.
-Live page: https://aliakbermollick.github.io/tpms-lattice-ml/
+Live page: https://aliakbermollick.github.io/tpms-lattice-ml/docs/
 
 Each folder has `reference_outputs/` or `reference_results/` with the numbers from the runs used in the paper.
 
